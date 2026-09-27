@@ -1,38 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <!-- Rounded Squircle Canvas -->
-  <rect width="32" height="32" rx="8" fill="#FFFFFF"/>
-  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" stroke="#E2E8F0" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Soft App Card Base -->
+  <rect width="48" height="48" rx="12" fill="#FFFFFF"/>
+  <rect x="0.75" y="0.75" width="46.5" height="46.5" rx="11.25" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Bunny Ears (Long, clearly rabbit ears with soft pink inside) -->
+  <!-- Left Ear -->
+  <path d="M18 19C17 10 20 4 23 4C26 4 25 11 23 19" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M19.5 16C19 10 20.8 6.5 22.5 6.5C23.5 6.5 23.5 10 22.5 16" fill="#FEE2E2"/>
   
-  <!-- Minimal Capsule Bunny Body -->
-  <path d="M10 13C10 9.68629 12.6863 7 16 7C19.3137 7 22 9.68629 22 13V18C22 21.3137 19.3137 24 16 24C12.6863 24 10 21.3137 10 18V13Z" fill="#3182F6" fill-opacity="0.12" stroke="#3182F6" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Right Ear -->
+  <path d="M30 19C31 10 28 4 25 4C22 4 23 11 25 19" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M28.5 16C29 10 27.2 6.5 25.5 6.5C24.5 6.5 24.5 10 25.5 16" fill="#FEE2E2"/>
+
+  <!-- Bunny Head (Round, plump, cute) -->
+  <circle cx="24" cy="23" r="11" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.8"/>
+
+  <!-- Cute Eyes (Two distinct dark eyes, NOT a cyclops!) -->
+  <circle cx="20" cy="21.5" r="1.4" fill="#0F172A"/>
+  <circle cx="28" cy="21.5" r="1.4" fill="#0F172A"/>
   
-  <!-- Bunny Left Ear -->
-  <path d="M12.5 7V3.5C12.5 2.67157 13.1716 2 14 2C14.8284 2 15.5 2.67157 15.5 3.5V7" stroke="#3182F6" stroke-width="2.2" stroke-linecap="round"/>
-  
-  <!-- Bunny Right Ear -->
-  <path d="M19.5 7V3.5C19.5 2.67157 18.8284 2 18 2C17.1716 2 16.5 2.67157 16.5 3.5V7" stroke="#3182F6" stroke-width="2.2" stroke-linecap="round"/>
-  
-  <!-- Golden Compass Ring -->
-  <circle cx="16" cy="15.5" r="3.6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2"/>
-  
-  <!-- Spinning Red Compass Needle -->
-  <g class="spin-needle" style="transform-origin: 16px 15.5px;">
-    <path d="M16 13.5L17.2 15.5L16 17.5L14.8 15.5Z" fill="#EF4444"/>
-    <circle cx="16" cy="15.5" r="0.8" fill="#0F172A"/>
+  <!-- Tiny Pink Nose & Cheeks -->
+  <ellipse cx="24" cy="23.5" rx="1" ry="0.8" fill="#F43F5E"/>
+  <circle cx="17.5" cy="23.5" r="1.8" fill="#FEE2E2"/>
+  <circle cx="30.5" cy="23.5" r="1.8" fill="#FEE2E2"/>
+
+  <!-- Golden Compass (Held under chin like a precious jewel) -->
+  <circle cx="24" cy="33.5" r="7.5" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.8"/>
+  <circle cx="24" cy="33.5" r="5.8" fill="#FFFFFF" stroke="#FDE68A" stroke-width="1"/>
+
+  <!-- Compass Needle (Red North, Blue South) -->
+  <g class="compass-needle" style="transform-origin: 24px 33.5px;">
+    <polygon points="24,28.5 25.8,33.5 22.2,33.5" fill="#EF4444"/>
+    <polygon points="24,38.5 25.8,33.5 22.2,33.5" fill="#3B82F6"/>
+    <circle cx="24" cy="33.5" r="1" fill="#0F172A"/>
   </g>
 
+  <!-- Paws holding compass -->
+  <ellipse cx="17.5" cy="33.5" rx="2" ry="1.6" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.4"/>
+  <ellipse cx="30.5" cy="33.5" rx="2" ry="1.6" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.4"/>
+
   <style>
-    @keyframes spin {
+    @keyframes needleWobble {
       0% { transform: rotate(0deg); }
-      20% { transform: rotate(45deg); }
-      45% { transform: rotate(-30deg); }
-      70% { transform: rotate(15deg); }
+      30% { transform: rotate(35deg); }
+      60% { transform: rotate(-25deg); }
+      80% { transform: rotate(15deg); }
       100% { transform: rotate(0deg); }
     }
-    .spin-needle {
+    .compass-needle {
       transform-box: fill-box;
       transform-origin: center;
-      animation: spin 5s ease-in-out infinite alternate;
+      animation: needleWobble 4s ease-in-out infinite alternate;
     }
   </style>
 </svg>
