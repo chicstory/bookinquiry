@@ -11,7 +11,9 @@
   - [app.js](file:///c:/Users/chics/OneDrive/문서/gemini/bookinquiry/js/app.js): 완독(Finish & Mint) 축하 시 자발적 커피 후원 안내 연동
   - [about.html](file:///c:/Users/chics/OneDrive/문서/gemini/bookinquiry/about.html): 1인 독립 빌더 철학("Built When Needed, Shared Openly") 및 커피 후원 위젯 추가
 - **3. 결과 & 검증**:
-  - 커밋 `a9f15e2`, GitHub Pages(`bookinquiry.com`) 즉시 배포 완료
+  - 커밋 `a9f15e2`, `4b97ef9`: 모바일 360px(Galaxy A55 등) 헤더 버튼 라벨 반응형 숨김(`Explore`/`Library` 텍스트 숨기고 아이콘화, `Sync` 버튼 축약)으로 우측 잘림 완벽 해결
+  - GitHub Pages(`bookinquiry.com`) 즉시 배포 완료
 - **4. 주요 합의 사항**:
   - 광고 배너 없는 순수 미니멀 독서 성소(Reading Sanctuary) 톤앤매너 유지
   - 구글 연동은 필수가 아닌 선택적 드라이브 백업 기능으로 위치 유지
+  - 모바일 360px 뷰포트에서 헤더 모든 버튼(탐색, 서재, 커피, 구글싱크) 1줄 노출 표준 준수
