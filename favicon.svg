@@ -1,67 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
-  <!-- Rounded App Background -->
-  <rect width="120" height="120" rx="26" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Rounded Squircle Canvas -->
+  <rect width="32" height="32" rx="8" fill="#FFFFFF"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" stroke="#E2E8F0" stroke-width="1"/>
   
-  <!-- Bunny Shadow -->
-  <ellipse cx="60" cy="112" rx="34" ry="5" fill="#0F172A" fill-opacity="0.08"/>
+  <!-- Minimal Capsule Bunny Body -->
+  <path d="M10 13C10 9.68629 12.6863 7 16 7C19.3137 7 22 9.68629 22 13V18C22 21.3137 19.3137 24 16 24C12.6863 24 10 21.3137 10 18V13Z" fill="#3182F6" fill-opacity="0.12" stroke="#3182F6" stroke-width="2.2" stroke-linejoin="round"/>
   
-  <!-- Ears -->
-  <path d="M42 42C40 22 47 6 54 8C61 10 54 26 50 44" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
-  <path d="M45 38C44 26 48 15 52 16C56 17 53 28 49 40" fill="#FEE2E2"/>
+  <!-- Bunny Left Ear -->
+  <path d="M12.5 7V3.5C12.5 2.67157 13.1716 2 14 2C14.8284 2 15.5 2.67157 15.5 3.5V7" stroke="#3182F6" stroke-width="2.2" stroke-linecap="round"/>
   
-  <path d="M78 42C80 22 73 6 66 8C59 10 66 26 70 44" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
-  <path d="M75 38C76 26 72 15 68 16C64 17 67 28 71 40" fill="#FEE2E2"/>
+  <!-- Bunny Right Ear -->
+  <path d="M19.5 7V3.5C19.5 2.67157 18.8284 2 18 2C17.1716 2 16.5 2.67157 16.5 3.5V7" stroke="#3182F6" stroke-width="2.2" stroke-linecap="round"/>
   
-  <!-- Body & Head -->
-  <ellipse cx="60" cy="76" rx="32" ry="30" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.5"/>
-  <circle cx="60" cy="54" r="28" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.5"/>
+  <!-- Golden Compass Ring -->
+  <circle cx="16" cy="15.5" r="3.6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2"/>
   
-  <!-- Facial Features -->
-  <circle cx="48" cy="52" r="3" fill="#0F172A"/>
-  <circle cx="72" cy="52" r="3" fill="#0F172A"/>
-  <path d="M57 58C58.5 60 61.5 60 63 58" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="60" cy="56" r="2.2" fill="#F43F5E"/>
-  <circle cx="41" cy="57" r="4.5" fill="#FEE2E2"/>
-  <circle cx="79" cy="57" r="4.5" fill="#FEE2E2"/>
-  
-  <!-- Paws -->
-  <ellipse cx="44" cy="104" rx="9" ry="5.5" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.2"/>
-  <ellipse cx="76" cy="104" rx="9" ry="5.5" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.2"/>
-  
-  <!-- Glowing Golden Compass -->
-  <g transform="translate(6, 0)">
-    <circle cx="60" cy="84" r="16" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2.5"/>
-    <circle cx="60" cy="84" r="13" fill="#FFFFFF" stroke="#FDE68A" stroke-width="1.5"/>
-    
-    <line x1="60" y1="73" x2="60" y2="76" stroke="#D97706" stroke-width="1.8" stroke-linecap="round"/>
-    <line x1="60" y1="92" x2="60" y2="95" stroke="#D97706" stroke-width="1.8" stroke-linecap="round"/>
-    <line x1="49" y1="84" x2="52" y2="84" stroke="#D97706" stroke-width="1.8" stroke-linecap="round"/>
-    <line x1="68" y1="84" x2="71" y2="84" stroke="#D97706" stroke-width="1.8" stroke-linecap="round"/>
-    
-    <!-- Rotating Compass Needle with CSS Animation -->
-    <g class="compass-needle" style="transform-origin: 60px 84px; animation: needleSpin 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
-      <polygon points="60,73 63,84 57,84" fill="#EF4444"/>
-      <polygon points="60,95 63,84 57,84" fill="#3B82F6"/>
-      <circle cx="60" cy="84" r="2.2" fill="#0F172A"/>
-    </g>
-    
-    <!-- Hands holding the compass -->
-    <ellipse cx="45" cy="84" rx="5" ry="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
-    <ellipse cx="75" cy="84" rx="5" ry="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+  <!-- Spinning Red Compass Needle -->
+  <g class="spin-needle" style="transform-origin: 16px 15.5px;">
+    <path d="M16 13.5L17.2 15.5L16 17.5L14.8 15.5Z" fill="#EF4444"/>
+    <circle cx="16" cy="15.5" r="0.8" fill="#0F172A"/>
   </g>
 
   <style>
-    @keyframes needleSpin {
+    @keyframes spin {
       0% { transform: rotate(0deg); }
-      25% { transform: rotate(45deg); }
-      50% { transform: rotate(-35deg); }
-      75% { transform: rotate(20deg); }
+      20% { transform: rotate(45deg); }
+      45% { transform: rotate(-30deg); }
+      70% { transform: rotate(15deg); }
       100% { transform: rotate(0deg); }
     }
-    .compass-needle {
+    .spin-needle {
       transform-box: fill-box;
       transform-origin: center;
-      animation: needleSpin 5s ease-in-out infinite alternate;
+      animation: spin 5s ease-in-out infinite alternate;
     }
   </style>
 </svg>
