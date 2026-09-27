@@ -11,11 +11,13 @@
   - [app.js](file:///c:/Users/chics/OneDrive/문서/gemini/bookinquiry/js/app.js): 완독(Finish & Mint) 축하 시 자발적 커피 후원 안내 연동
   - [about.html](file:///c:/Users/chics/OneDrive/문서/gemini/bookinquiry/about.html): 1인 독립 빌더 철학("Built When Needed, Shared Openly") 및 커피 후원 위젯 추가
 - **3. 결과 & 검증**:
-  - 커밋 `a9f15e2`, `4b97ef9`, `694d85a`:
+  - 커밋 `a9f15e2`, `4b97ef9`, `694d85a`, `366bc1c`:
     - 모바일 360px 헤더 버튼 슬림화로 우측 잘림 해결
     - 모바일 미디어 쿼리 내 `.user-profile-badge`의 `display: inline-flex !important;` 충돌 버그 수정 (로그아웃/미연결 상태에서 배지가 강제 노출되던 현상 완벽 해결)
+    - **[긴급 보안] 클라이언트 `app.js` 내 하드코딩된 Gemini API 키 전면 영구 박멸, `.gitignore` 신규 구축, 서버리스 엣지 워커 및 사용자 로컬스토리지 전용 격리 아키텍처로 안전 전환**
   - GitHub Pages(`bookinquiry.com`) 즉시 배포 완료
 - **4. 주요 합의 사항**:
   - 광고 배너 없는 순수 미니멀 독서 성소(Reading Sanctuary) 톤앤매너 유지
   - 구글 연동은 필수가 아닌 선택적 드라이브 백업 기능으로 위치 유지
   - 모바일 360px 뷰포트에서 헤더 모든 버튼(탐색, 서재, 커피, 구글싱크) 1줄 노출 표준 준수
+  - 클라이언트 소스코드에 어떠한 API 비밀 키도 하드코딩 금지 (보안 절대 수칙 준수)
