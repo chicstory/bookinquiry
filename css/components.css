@@ -3661,5 +3661,96 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* --------------------------------------------------------------------------
+   8. Buy Me a Coffee Integration & Universal Un-gate Styling
+   -------------------------------------------------------------------------- */
+.btn-coffee-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #B45309;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
+.btn-coffee-nav:hover {
+  background: #FEF3C7;
+  border-color: #FCD34D;
+  color: #92400E;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+}
 
+.footer-coffee-banner {
+  margin: 32px 0 28px;
+  padding: 20px 24px;
+  background: #FFFFFF;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-md, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.06);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.coffee-banner-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #92400E;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.coffee-banner-desc {
+  font-size: 0.88rem;
+  color: #78350F;
+  line-height: 1.5;
+  max-width: 580px;
+  word-break: keep-all;
+}
+
+.btn-footer-coffee {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFDD00;
+  color: #000000;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm, 12px);
+  text-decoration: none;
+  border: 1px solid #F59E0B;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-footer-coffee:hover {
+  background: #FACC15;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.28);
+}
+
+.btn-footer-coffee:active {
+  transform: scale(0.98);
+}
+
+/* Universal Un-gate: 100% Free & Open Reading Experience */
+.library-gate-overlay {
+  display: none !important;
+}
+
+.sparks-gate-banner {
+  display: none !important;
+}

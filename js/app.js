@@ -2193,10 +2193,15 @@ function finishBookAndMint(book) {
     statusBadge.style.background = '#EFF6FF';
   }
 
-  // Sync Final Report to Google Drive
+  // Sync Final Report to Google Drive if connected
   syncCurrentBookToDrive(false, true);
 
-  alert(`✨ Congratulations on completing "${book.title}"!\n\nYour reflections have been preserved in your permanent library and synced to Google Drive.`);
+  // Friendly completion & gentle optional coffee support prompt
+  const confirmSupport = confirm(`✨ Congratulations on completing "${book.title}"!\n\nYour resonance and reflections have been preserved in your permanent library.\n\nBookInquiry is 100% free and ad-free. If this reading journey was meaningful, would you like to support future independent tools with a coffee? ☕`);
+  
+  if (confirmSupport) {
+    window.open('https://www.buymeacoffee.com/thepathlab', '_blank', 'noopener');
+  }
   
   // Transition to My Library to celebrate the live recap update
   showLibraryView();
@@ -2342,21 +2347,17 @@ function updateAuthUI() {
     btnActivateLicense.style.opacity = '0.7';
   }
 
-  // 2. Personal Library Gate State (Recap & Shelves blurred if guest)
+  // 2. Personal Library Gate State: 100% Free & Open (Zero gatekeeping)
   const libraryContainer = document.querySelector('.library-container');
   const libraryGateOverlay = document.getElementById('libraryGateOverlay');
   if (libraryContainer) {
-    if (isAuth) {
-      libraryContainer.classList.remove('library-locked');
-    } else {
-      libraryContainer.classList.add('library-locked');
-    }
+    libraryContainer.classList.remove('library-locked');
   }
   if (libraryGateOverlay) {
-    libraryGateOverlay.style.display = isAuth ? 'none' : 'flex';
+    libraryGateOverlay.style.display = 'none';
   }
 
-  // 3. Reading Sanctuary Sparks Gate State (Spark 1 is Free Preview, Sparks 2-4 Gated)
+  // 3. Reading Sanctuary Sparks: All 4 Sparks 100% Open for all readers!
   const promptBoxLens = document.getElementById('promptBoxLens');
   const promptBoxQuest = document.getElementById('promptBoxQuest');
   const promptBoxEcho = document.getElementById('promptBoxEcho');
@@ -2364,16 +2365,12 @@ function updateAuthUI() {
 
   [promptBoxLens, promptBoxQuest, promptBoxEcho].forEach(box => {
     if (box) {
-      if (isAuth) {
-        box.classList.remove('prompt-locked');
-      } else {
-        box.classList.add('prompt-locked');
-      }
+      box.classList.remove('prompt-locked');
     }
   });
 
   if (sparksGateBanner) {
-    sparksGateBanner.style.display = isAuth ? 'none' : 'flex';
+    sparksGateBanner.style.display = 'none';
   }
 }
 
