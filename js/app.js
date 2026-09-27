@@ -1817,16 +1817,15 @@ async function fetchBookSynopsis(title, author = '') {
 const CLOUDFLARE_WORKER_URL = 'https://bookiry-worker.chicstory.workers.dev';
 
 async function generateSparksWithGemini(bookTitle, bookAuthor, synopsis, compass, customIntent = '') {
-  // 1. Direct Browser Call with Free Tier Gemini (0ms friction, 0 Won cost, 1500 RPD)
-  const geminiKey = localStorage.getItem(STORAGE_KEY_GEMINI_KEY) || atob('QVEuQWI4Uk42TDNOb3J4emZVVTlYLVlIRTZxclUxeWkydklyWTIzWVNhalNVZkx3Nk1kUFE=');
-  if (geminiKey) {
-    try {
-    const hasKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(bookTitle + ' ' + (customIntent || ''));
-    const langInstruction = hasKorean 
-      ? 'Generate 4 deeply catalytic, tailored Socratic questions in Korean:' 
-      : 'Generate 4 deeply catalytic, tailored Socratic questions in elegant, sophisticated, and evocative English:';
+  // 1. Direct Browser Call if user provided their own key in Settings (zero server transit)
+  const geminiKey = localStorage.getItem(STORAGE_KEY_GEMINI_KEY);
+  
+  const hasKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(bookTitle + ' ' + (customIntent || ''));
+  const langInstruction = hasKorean 
+    ? 'Generate 4 deeply catalytic, tailored Socratic questions in Korean:' 
+    : 'Generate 4 deeply catalytic, tailored Socratic questions in elegant, sophisticated, and evocative English:';
 
-    const prompt = `You are the master curator of BookInquiry (Intentional 1:1 Reading Compass).
+  const prompt = `You are the master curator of BookInquiry (Intentional 1:1 Reading Compass).
 A reader is about to open the book "${bookTitle}" by ${bookAuthor || 'Unknown Author'}.
 
 Context Synopsis / Themes of this specific book:
@@ -1847,6 +1846,8 @@ Strict Output Rules:
 - Return ONLY a raw JSON with keys: spark, lens, quest, echo.
 - Do NOT use markdown backticks.`;
 
+  if (geminiKey) {
+    try {
       for (const model of ['gemini-flash-lite-latest', 'gemini-flash-latest']) {
         try {
           const directRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`, {
@@ -1872,7 +1873,33 @@ Strict Output Rules:
         } catch (e) {}
       }
     } catch (directErr) {
-      console.warn('Gemini Free Tier call failed:', directErr);
+      console.warn('Gemini direct call failed:', directErr);
+    }
+  }
+
+  // 2. Fallback to Cloudflare Worker Edge Proxy (Zero Client Secrets)
+  if (CLOUDFLARE_WORKER_URL) {
+    try {
+      const workerRes = await fetch(CLOUDFLARE_WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: bookTitle,
+          author: bookAuthor,
+          synopsis: synopsis,
+          compass: compass,
+          customIntent: customIntent,
+          prompt: prompt
+        })
+      });
+      if (workerRes.ok) {
+        const workerData = await workerRes.json();
+        if (workerData && workerData.spark) {
+          return workerData;
+        }
+      }
+    } catch (workerErr) {
+      console.warn('Edge Worker proxy failed or unavailable:', workerErr);
     }
   }
 

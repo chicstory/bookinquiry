@@ -1,0 +1,13 @@
+# Security & Secrets Protection
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+__pycache__/
+*.log
