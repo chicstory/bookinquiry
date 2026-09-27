@@ -2376,6 +2376,34 @@
   min-width: 0;
 }
 
+.shelf-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.btn-shelf-delete {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  padding: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  margin-top: -2px;
+}
+
+.btn-shelf-delete:hover {
+  color: #EF4444;
+  background: #FEE2E2;
+  transform: scale(1.1);
+}
+
 .shelf-book-title {
   font-size: 0.95rem;
   font-weight: 800;

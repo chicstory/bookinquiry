@@ -1106,7 +1106,15 @@ function renderLibraryDashboard() {
                   : escapeHtml(book.title.slice(0, 14))}
               </div>
               <div class="shelf-book-meta">
-                <div class="shelf-book-title">${escapeHtml(book.title)}</div>
+                <div class="shelf-meta-header">
+                  <div class="shelf-book-title">${escapeHtml(book.title)}</div>
+                  <button type="button" class="btn-shelf-delete" onclick="removeBookFromLibrary('${escapeHtml(book.slug)}', event)" title="Remove book from library" aria-label="Remove book">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                  </button>
+                </div>
                 <div class="shelf-book-author">${escapeHtml(book.author || 'Intentional Reading')}</div>
                 <span class="shelf-compass-pill">${getCompassPillLabel(book.compass)}</span>
               </div>
@@ -1142,7 +1150,15 @@ function renderLibraryDashboard() {
                   : escapeHtml(book.title.slice(0, 14))}
               </div>
               <div class="shelf-book-meta">
-                <div class="shelf-book-title">${escapeHtml(book.title)}</div>
+                <div class="shelf-meta-header">
+                  <div class="shelf-book-title">${escapeHtml(book.title)}</div>
+                  <button type="button" class="btn-shelf-delete" onclick="removeBookFromLibrary('${escapeHtml(book.slug)}', event)" title="Remove book from library" aria-label="Remove book">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                  </button>
+                </div>
                 <div class="shelf-book-author">${escapeHtml(book.author || 'Intentional Reading')}</div>
                 <span class="shelf-compass-pill" style="background:#EFF6FF; color:#3182F6;">🏆 Completed</span>
               </div>
@@ -1157,6 +1173,28 @@ function renderLibraryDashboard() {
     }
   }
 }
+
+// Remove book from personal library
+window.removeBookFromLibrary = function(slug, event) {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  const lib = getMyLibrary();
+  const book = [...lib.currentlyReading, ...lib.completed].find(b => b.slug === slug);
+  const title = book ? book.title : 'this book';
+
+  if (confirm(`Remove "${title}" from your library? (Your saved reflections will remain safe)`)) {
+    lib.currentlyReading = lib.currentlyReading.filter(b => b.slug !== slug);
+    lib.completed = lib.completed.filter(b => b.slug !== slug);
+    saveMyLibrary(lib);
+    renderLibraryDashboard();
+    if (typeof showToast === 'function') {
+      showToast(`"${title}" has been removed from library.`);
+    }
+  }
+};
 
 function getCompassPillLabel(compass) {
   const labels = {
