@@ -138,19 +138,26 @@
     height: 24px;
   }
   .nav-menu {
-    gap: 5px;
+    gap: 4px;
     flex-shrink: 0;
     align-items: center;
   }
-  /* Ultra-compact button styling on mobile */
+  /* Ultra-compact button styling on mobile: guarantee all 4 items fit in 360px */
   .btn-nav {
-    padding: 0 7px;
+    padding: 0 6px;
     font-size: 0.78rem;
     min-height: 32px;
     height: 32px;
   }
+  .btn-nav-label {
+    display: none;
+  }
+  .btn-coffee-nav {
+    padding: 0 7px;
+    font-size: 0.76rem;
+  }
   .btn-google-nav {
-    padding: 0 8px;
+    padding: 0 7px;
     font-size: 0.76rem;
     min-height: 32px;
     height: 32px;
