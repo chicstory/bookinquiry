@@ -1877,10 +1877,11 @@ Strict Output Rules:
     }
   }
 
-  // 2. Fallback to Cloudflare Worker Edge Proxy (Zero Client Secrets)
+  // 2. Fallback to Cloudflare Worker Edge Proxy (Keyless Public Reader Access, Zero Client Secrets)
   if (CLOUDFLARE_WORKER_URL) {
     try {
-      const workerRes = await fetch(CLOUDFLARE_WORKER_URL, {
+      const endpoint = CLOUDFLARE_WORKER_URL.replace(/\/$/, '') + '/api/sparks';
+      const workerRes = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1888,18 +1889,18 @@ Strict Output Rules:
           author: bookAuthor,
           synopsis: synopsis,
           compass: compass,
-          customIntent: customIntent,
-          prompt: prompt
+          customIntent: customIntent
         })
       });
       if (workerRes.ok) {
         const workerData = await workerRes.json();
-        if (workerData && workerData.spark) {
-          return workerData;
+        const sparks = workerData.sparks || workerData;
+        if (sparks && sparks.spark) {
+          return sparks;
         }
       }
     } catch (workerErr) {
-      console.warn('Edge Worker proxy failed or unavailable:', workerErr);
+      console.warn('Edge Worker proxy call failed:', workerErr);
     }
   }
 
