@@ -163,16 +163,18 @@
     height: 32px;
     gap: 4px;
   }
-  /* Compact Circular Login Status Badge on Mobile: Never overflow */
+  /* Compact Circular Login Status Badge on Mobile: Only visible when authenticated */
   .user-profile-badge {
-    padding: 3px 6px 3px 3px !important;
+    padding: 3px 6px 3px 3px;
     gap: 4px;
-    background: #ECFDF5 !important;
-    border: 1.5px solid #10B981 !important;
+    background: #ECFDF5;
+    border: 1.5px solid #10B981;
     border-radius: var(--radius-full);
-    display: inline-flex !important;
     align-items: center;
     cursor: pointer;
+  }
+  .user-profile-badge[style*="display: none"] {
+    display: none !important;
   }
   .user-avatar-circle {
     width: 24px;
